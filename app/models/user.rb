@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :organizations, through: :memberships
   has_many :team_memberships
 
+  before_save :downcase_email
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -10,6 +11,10 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+
+  def downcase_email
+    self.email = self.email.downcase
+  end
 
   def password_required?
     new_record? ? super : false

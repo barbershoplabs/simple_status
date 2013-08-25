@@ -1,9 +1,10 @@
 class Admin::TeamsController < ApplicationController
   def new
     @team = Team.new
-    # 1.times do
+    @team.team_memberships.build(email: current_user.email)
+    2.times do
       @team.team_memberships.build
-    # end
+    end
   end
 
   def create

@@ -9,7 +9,7 @@ class TeamMembership < ActiveRecord::Base
 
   def create_team_memberships_from_email_addresses
     if self.email.present?
-      user = User.where(email: self.email).first
+      user = User.where(email: self.email.downcase).first
 
       if user.present?
         self.user_id = user.id

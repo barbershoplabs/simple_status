@@ -10,30 +10,24 @@ class Ability
 	end
 
 	def guest
-    can [:create], User
-    can :index, :customer_home
+    # can [:create], User
   end
 
   def member
   	guest
+    can :index, :customer_home
 #  	can :read, Site
-#  	can :read, User
 #  	can :update, User, id: @user.id
   end
 
-  def subscriber
-    member
-  end
-
   def admin
-  	subscriber
+  	member
+    can :index , :admin_home
+    can :manage, Team, organization_id: @membership.organization_id
   end
 
   def owner
   	admin
-#  	can :index , :admin_home
-#  	can :update, :sites
-    # can :manage, :admin_screener_choices
   end
 
   def god

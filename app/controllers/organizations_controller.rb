@@ -29,7 +29,7 @@ class OrganizationsController < ApplicationController
           sign_in(current_user)
         end
 
-        format.html { redirect_to(customer_root_url(subdomain: @organization.subdomain)) }
+        format.html { redirect_to(admin_customer_root_url(subdomain: @organization.subdomain)) }
         format.json { render json: @organization, status: :created, location: @organization }
       else
         format.html { render action: "new" }
