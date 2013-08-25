@@ -22,13 +22,11 @@ SimpleStatus::Application.routes.draw do
   constraints(CustomerDomainConstraint) do
     # site admin routes here
     namespace "admin" do
+      resources :teams
       root to: 'home#index', as: 'customer_root'
     end
 
     # customer routes here
     root to: 'customer_home#index', as: 'customer_root'
-    # resources :users do
-    #   resources :services
-    # end
   end
 end

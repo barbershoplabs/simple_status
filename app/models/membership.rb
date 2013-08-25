@@ -1,6 +1,6 @@
 class Membership < ActiveRecord::Base
-	belongs_to :user
-	belongs_to :organization
+  belongs_to :user
+  belongs_to :organization
 
-	accepts_nested_attributes_for :user
+  accepts_nested_attributes_for :user
 end
