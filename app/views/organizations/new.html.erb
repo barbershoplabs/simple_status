@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row">
+		<h3>You're 60 seconds away from your own corporate alumni site</h3>
+
+		<div class="payment-errors alert alert-error"></div>
+
+		<%= simple_form_for @organization, html: { class: "form-vertical" } do |f| %>
+			<%= f.hidden_field :plan_id, value: @plan.id %>
+			<legend>Site details</legend>
+			<%= f.input :subdomain, label: "Subdomain", hint: "http://___.alumni.io" %>
+
+			<% unless current_user %>
+				<legend>Personal details</legend>
+				<%= f.fields_for :users do |f| %>
+					<%= f.input :email %>
+					<%= f.input :password %>
+					<%= f.input :password_confirmation %>
+				<% end %>
+			<% end %>
+
+			<legend>Billing Information</legend>
+			<div class="control-group string">
+				<label class="string optional control-label">Card Number</label>
+				<div class="controls">
+					<input type="text" size="20" autocomplete="off" class="card-number"/>
+				</div>
+			</div>
+			<div class="control-group string">
+				<label class="string optional control-label">CVC</label>
+				<div class="controls">
+					<input type="text" size="4" autocomplete="off" class="card-cvc"/>
+				</div>
+			</div>
+			<div class="control-group string">
+				<label class="string optional control-label">Expiration (MM/YYYY)</label>
+				<div class="controls">
+					<input type="text" size="2" class="card-expiry-month"/>
+					<span> / </span>
+					<input type="text" size="4" class="card-expiry-year"/>
+				</div>
+			</div>
+
+			<%= f.submit nil, class: 'btn btn-primary' %>
+		<% end %>
+	</div>
+</div>
+
+<script>
+jQuery(function($) {
+  $('#new_organization').submit(function(event) {
+    var $form = $(this);
+
+    // Disable the submit button to prevent repeated clicks
+    $form.find('button').prop('disabled', true);
+
+    // Stripe.createToken($form, stripeResponseHandler);
+		Stripe.createToken({
+		    number: $('.card-number').val(),
+		    cvc: $('.card-cvc').val(),
+		    exp_month: $('.card-expiry-month').val(),
+		    exp_year: $('.card-expiry-year').val()
+		}, stripeResponseHandler);
+
+    // Prevent the form from submitting with the default action
+    return false;
+  });
+});
+
+var stripeResponseHandler = function(status, response) {
+  var $form = $('#new_organization');
+
+  if (response.error) {
+  	// scroll up
+		window.scrollTo(0, 0);
+
+    // Show the errors on the form
+    $('.payment-errors').show();
+    $('.payment-errors').text(response.error.message);
+    $form.find('button').prop('disabled', false);
+  } else {
+    // token contains id, last4, and card type
+    var token = response.id;
+    // Insert the token into the form so it gets submitted to the server
+    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+    // and submit
+    $form.get(0).submit();
+  }
+};
+</script>

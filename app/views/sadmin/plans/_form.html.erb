@@ -1,0 +1,10 @@
+<%= simple_form_for [:sadmin, @plan], html: { class: "form-vertical" } do |f| %>
+	<%= f.input :name %>
+	<%= f.input :description %>
+	<%= f.input :amount %>
+	<%= f.input :interval, collection: ["month", "year"] %>
+	<%= f.input :interval_count, collection: 1..12 %>
+	<%= f.input :days_free %>
+	<%= f.input :status, collection: Plan::STATUSES %>
+	<%= f.submit nil, class: 'btn btn-primary' %>
+<% end %>

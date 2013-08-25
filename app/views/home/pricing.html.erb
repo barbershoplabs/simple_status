@@ -1,0 +1,21 @@
+<div class="container">
+  <h3>Select a plan to get started.</h3>
+
+  <div class="row demo-tiles">
+    <% @plans.each do |plan| %>
+    <div class="span4">
+      <div class="tile tile-hot">
+        <img src="/assets/icons/Citris@2x.png" alt="Compas@2x" class="tile-image big-illustration">
+        <h3 class="tile-title"><% plan.name %></h3>
+        <p><%= display_price(plan) %>/<%= plan.interval %></p>
+        <%= plan.description.html_safe if plan.description %>
+        <%= link_to 'Subscribe', new_organization_path(plan: plan.id), :class => 'btn btn-primary btn-large btn-block' %>
+      </div>
+    </div>
+    <% end %>
+    <% if false %>
+        <img src="/assets/icons/Flower@2x.png" alt="Chat@2x" class="tile-image">
+        <img src="/assets/icons/Circles@2x.png" alt="Infinity-Loop@2x" class="tile-image">
+    <% end %>
+  </div>
+</div>

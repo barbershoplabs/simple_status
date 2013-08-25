@@ -1,0 +1,45 @@
+<h1>Listing Plans (<%= @plans.size %>)</h1>
+
+<% if @plans.present? %>
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th width="300px">Description</th>
+			<th>Amount</th>
+			<th>Interval</th>
+			<th>Interval Count</th>
+			<th>Days Free</th>
+			<th>Status</th>
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @plans.each do |plan| %>
+		<tr>
+			<td><%= plan.name %></td>
+			<td><%= plan.description %></td>
+			<td><%= display_price(plan) %></td>
+			<td><%= plan.interval %></td>
+			<td><%= plan.interval_count %></td>
+			<td><%= pluralize(plan.days_free, "day") %></td>
+			<td><%= Plan::STATUSES.keys[plan.status] %></td>
+			<td>
+				<%= link_to 'Edit', edit_sadmin_plan_path(plan) %> |
+				<%= link_to 'Delete', [:sadmin, plan], data: { confirm: "Are you sure?" }, method: :delete %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<% else %>
+<br/>
+<p>No plans have been created yet.</p>
+<br/>
+<% end %>
+
+<%= link_to new_sadmin_plan_path, class: "btn btn-primary" do %>
+Create a New Plan</a>
+<% end %>
