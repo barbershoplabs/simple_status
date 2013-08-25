@@ -11,8 +11,10 @@ gem 'turbolinks'
 # gem 'jquery-turbolinks'
 gem "twitter-bootstrap-rails"
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
+gem 'cocoon'
 
 gem 'devise'
+gem 'devise_invitable', :github => 'scambra/devise_invitable'
 gem 'stripe'
 gem 'cancan'
 

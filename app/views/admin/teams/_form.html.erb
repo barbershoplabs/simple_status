@@ -1,0 +1,24 @@
+<%= simple_form_for [:admin, @team], html: { class: "form-vertical" } do |f| %>
+  <%= f.input :name %>
+
+  Team Members:<br/>
+  (we'll send an invitation to anyone that's not already a member of simple status)<br/>
+
+
+  <div id="team_memberships">
+    <%= f.simple_fields_for :team_memberships do |team_membership| %>
+      <%= render 'team_membership_fields', f: team_membership %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add member', f, :team_memberships %>
+    </div>
+  </div>
+
+  <br/><br/>
+
+  <%= f.submit nil, class: 'btn btn-primary' %>
+<% end %>
+
+<script>
+  $('.typeahead').typeahead();
+</script>

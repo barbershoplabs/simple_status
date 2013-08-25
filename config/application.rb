@@ -28,6 +28,19 @@ module SimpleStatus
     config.autoload_paths += Dir["#{config.root}/lib/**/"]  # include all subdirectories
 
 
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.smtp_settings = {
+      :authentication => :plain,
+      :address => "smtp.mailgun.org",
+      :port => 587,
+      :domain => "adamrubin.mailgun.org",
+      :user_name => "postmaster@adamrubin.mailgun.org",
+      :password => "9jrzpzexa7q8"
+    }
+      # :enable_starttls_auto => true,
+
     config.generators do |g|
       g.test_framework :rspec,
         :fixtures => true,
