@@ -7,6 +7,11 @@ class TeamMembership < ActiveRecord::Base
 
   before_create :create_team_memberships_from_email_addresses
 
+
+  def email
+    user.email if user.present?
+  end
+
   def create_team_memberships_from_email_addresses
     if self.email.present?
       user = User.where(email: self.email.downcase).first

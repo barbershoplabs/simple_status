@@ -1,4 +1,6 @@
 class Team < ActiveRecord::Base
+  RECURRENCE_TYPES = ["Weekly"]
+
   belongs_to :organization
   has_many :team_memberships, dependent: :destroy
   has_many :users, through: :team_memberships

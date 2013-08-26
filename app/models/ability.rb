@@ -11,11 +11,11 @@ class Ability
 
 	def guest
     # can [:create], User
+    can :index, :customer_home
   end
 
   def member
   	guest
-    can :index, :customer_home
 #  	can :read, Site
 #  	can :update, User, id: @user.id
   end

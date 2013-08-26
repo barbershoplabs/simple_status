@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825193252) do
+ActiveRecord::Schema.define(version: 20130825234033) do
 
   create_table "memberships", force: true do |t|
     t.integer  "user_id"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20130825193252) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "recurrence_type"
+    t.integer  "recurrence_value"
+    t.time     "send_request_at"
+    t.integer  "send_digest_days_later"
+    t.time     "send_digest_at"
+    t.string   "timezone"
+    t.string   "status"
   end
 
   create_table "users", force: true do |t|
