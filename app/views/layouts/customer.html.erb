@@ -17,7 +17,11 @@
         <%= link_to "Simple Status", customer_root_url, class: "brand" %>
         <div class="nav-collapse collapse" id="nav-collapse-01">
           <ul class="nav">
-            <li class="active"><%= link_to "Home", "#" %></li>
+            <li class= <%= 'active' if params[:controller] == 'customer_home' %>><%= link_to "Home", customer_root_path %></li>
+            <li class= <%= 'active' if params[:controller] == 'status_reports' %>><%= link_to "Status Reports", status_reports_path %></li>
+            <% if current_membership && (current_membership.role == 'god' || current_membership.role == 'admin' || current_membership.role == 'owner') %>
+              <li><%= link_to "Admin", admin_customer_root_path %></li>
+            <% end %>
           </ul> <!-- /nav -->
           <ul class="nav pull-right">
             <% if current_user %>

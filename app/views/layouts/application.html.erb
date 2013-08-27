@@ -17,7 +17,9 @@
         <%= link_to "Simple Status", customer_root_url, class: "brand" %>
         <div class="nav-collapse collapse" id="nav-collapse-01">
           <ul class="nav">
-            <li class="active"><%= link_to "Home", "#" %></li>
+            <li class= <%= 'active' if params[:controller] == 'admin/home' %>><%= link_to "Home", admin_customer_root_path %></li>
+            <li class= <%= 'active' if params[:controller] == 'admin/teams' %>><%= link_to "Teams", admin_teams_path %></li>
+            <li class= <%= 'active' if params[:controller] == 'admin/status_reports' %>><%= link_to "Status Reports", admin_status_reports_path %></li>
           </ul> <!-- /nav -->
           <ul class="nav pull-right">
             <% if current_user %>

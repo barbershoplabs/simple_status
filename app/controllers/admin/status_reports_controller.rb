@@ -3,6 +3,10 @@ class Admin::StatusReportsController < ApplicationController
     @status_reports = @current_organization.status_reports
   end
 
+  def show
+    @status_report = @current_organization.status_reports.find(params[:id])
+  end
+
   def new
     @status_report = StatusReport.new
   end

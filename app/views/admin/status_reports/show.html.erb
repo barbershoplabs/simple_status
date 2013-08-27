@@ -1,0 +1,12 @@
+<div class="span12">
+  Created At: <%= @status_report.created_at %><br/>
+  Team: <%= @status_report.team.name %><br/>
+
+  <h4>Updates</h4>
+  <% @status_report.status_summaries.each do |status_summary| %>
+    <%= status_summary.user.email %><br/>
+    <%= status_summary.created_at %><br/>
+    <%= simple_format(status_summary.body) %>
+    <hr/>
+  <% end %>
+</div>

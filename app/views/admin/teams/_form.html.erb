@@ -1,5 +1,5 @@
 <%= simple_form_for [:admin, @team], html: { class: "form-vertical" } do |f| %>
-  <%= f.input :name, placeholder: 'Dev team', label: "Name this team" %>
+  <%= f.input :name, placeholder: 'Engineering', label: "Name this team" %>
   <%= f.hidden_field :recurrence_type, value: "Weekly" %>
   <%= f.input :recurrence_value, as: :select, collection: Date::DAYNAMES.each_with_index, label: "Request status updates every week on what day?" %>
   <%= f.input :send_request_at, as: :time, label: "At what time?" %>

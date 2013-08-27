@@ -25,10 +25,12 @@ SimpleStatus::Application.routes.draw do
     namespace "admin" do
       resources :teams
       resources :status_reports
+      resources :status_summaries
       root to: 'home#index', as: 'customer_root'
     end
 
     # customer routes here
     root to: 'customer_home#index', as: 'customer_root'
+    resources :status_reports
   end
 end
