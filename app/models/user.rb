@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :memberships, dependent: :delete_all
   has_many :organizations, through: :memberships
   has_many :team_memberships
+  has_many :status_summaries
 
   before_save :downcase_email
 

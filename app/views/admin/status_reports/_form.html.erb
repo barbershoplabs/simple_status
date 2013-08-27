@@ -1,0 +1,4 @@
+<%= simple_form_for [:admin, @status_report], html: { class: "form-vertical" } do |f| %>
+  <%= f.input :team_id, as: :select, collection: @current_organization.teams %>
+  <%= f.submit nil, class: 'btn btn-primary' %>
+<% end %>

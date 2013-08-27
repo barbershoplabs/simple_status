@@ -2,7 +2,7 @@ class Plan < ActiveRecord::Base
   has_many :organizations
   after_create :create_on_stripe
   after_save :update_on_stripe
-  after_destroy :delete_on_stripe
+  after_destroy :destroy_on_stripe
 
   STATUSES = { inactive: 0, active: 1 }
 
@@ -29,7 +29,7 @@ class Plan < ActiveRecord::Base
     p.save
   end
 
-  def delete_on_stripe
+  def destroy_on_stripe
     p = Stripe::Plan.retrieve("simple_status_plan_#{self.id}")
     p.delete
   end

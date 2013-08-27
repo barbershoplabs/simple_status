@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825234033) do
+ActiveRecord::Schema.define(version: 20130827000533) do
 
   create_table "memberships", force: true do |t|
     t.integer  "user_id"
@@ -43,6 +43,22 @@ ActiveRecord::Schema.define(version: 20130825234033) do
     t.datetime "updated_at"
   end
 
+  create_table "status_reports", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "token"
+  end
+
+  create_table "status_summaries", force: true do |t|
+    t.integer  "status_report_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "team_memberships", force: true do |t|
     t.integer  "team_id"
     t.integer  "user_id"
@@ -62,6 +78,7 @@ ActiveRecord::Schema.define(version: 20130825234033) do
     t.time     "send_digest_at"
     t.string   "timezone"
     t.string   "status"
+    t.string   "mailgun_route"
   end
 
   create_table "users", force: true do |t|

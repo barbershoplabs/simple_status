@@ -1,41 +1,16 @@
 <%= simple_form_for [:admin, @team], html: { class: "form-vertical" } do |f| %>
-  Name this team<br/>
-  <%= f.input_field :name, placeholder: 'Dev team' %>
-
-  <br/><br/><br/>
-
-  Request status updates every week on?<br/>
+  <%= f.input :name, placeholder: 'Dev team', label: "Name this team" %>
   <%= f.hidden_field :recurrence_type, value: "Weekly" %>
-  <%= f.input_field :recurrence_value, as: :select, collection: Date::DAYNAMES.each_with_index, label: "Send every" %>
-  <br/>
-  At what time?
-  <br/>
-  <%= f.input_field :send_request_at, as: :time %>
+  <%= f.input :recurrence_value, as: :select, collection: Date::DAYNAMES.each_with_index, label: "Request status updates every week on what day?" %>
+  <%= f.input :send_request_at, as: :time, label: "At what time?" %>
+  <%= f.input :send_digest_days_later, as: :select, collection: 1..7, default: nil, label: "How many days after the request, should we send a digest of the team's udpates?" %>
+  <%= f.input :send_digest_at, as: :time, label: "At what time?" %>
+  <%= f.input :timezone, as: :time_zone, default: "Eastern Time (US & Canada)", label: "What's your timezone?" %>
 
-  <br/><br/><br/>
-
-  How many days after the request, should we send a digest of the team's udpates?
-  <br/>
-  <%= f.input_field :send_digest_days_later, as: :select, collection: 1..7, default: nil %>
-  <br/>
-  At what time?
-  <br/>
-  <%= f.input_field :send_digest_at, as: :time %>
-
-  <br/><br/><br/>
-
-
-  What's your timezone?
-  <br/>
-  <%= f.input_field :timezone, as: :time_zone, default: "Eastern Time (US & Canada)" %>
-
-
-
-  <br/><br/><br/>
+  <br/><br/>
 
   Team Members:<br/>
   (we'll send an invitation to anyone that's not already a member of simple status)<br/>
-
 
   <div id="team_memberships">
     <%= f.simple_fields_for :team_memberships do |team_membership| %>
@@ -50,7 +25,3 @@
 
   <%= f.submit nil, class: 'btn btn-primary' %>
 <% end %>
-
-<script>
-  $('.typeahead').typeahead();
-</script>

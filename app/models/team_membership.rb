@@ -2,14 +2,16 @@ class TeamMembership < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :team
 
-  attr_reader :email
   attr_writer :email
 
   before_create :create_team_memberships_from_email_addresses
 
-
   def email
-    user.email if user.present?
+    if user.present?
+      user.email
+    else
+      self.instance_values["email"]
+    end
   end
 
   def create_team_memberships_from_email_addresses

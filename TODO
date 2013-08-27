@@ -1,0 +1,14 @@
+Teams
+  StatusReport
+    StatusSummary
+
+Scheduler, runs every hour
+  Finds teams that send requests this day
+    For each team, checks to see if a report has already been sent for this week
+      If not
+        Creates a new StatusReport
+          Sends an email to every member of the team
+
+
+  Finds teams that send digests this day
+    ...

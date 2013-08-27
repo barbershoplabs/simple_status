@@ -10,6 +10,7 @@ SimpleStatus::Application.routes.draw do
 
     # public website routes here
     resources :organizations
+    resources :incoming
 
     # TODO - DRY this up
     match '/features' => 'home#show', via: :get, page: 'features'
@@ -23,6 +24,7 @@ SimpleStatus::Application.routes.draw do
     # site admin routes here
     namespace "admin" do
       resources :teams
+      resources :status_reports
       root to: 'home#index', as: 'customer_root'
     end
 

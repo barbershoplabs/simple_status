@@ -1,6 +1,15 @@
 class Admin::TeamsController < ApplicationController
+  def index
+    @teams = @current_organization.teams
+  end
+
   def new
     @team = Team.new
+    @team.recurrence_value = 5
+    @team.send_request_at = Time.now.change({:hour => 11 , :min => 0 , :sec => 0 })
+    @team.send_digest_days_later = 3
+    @team.send_digest_at = Time.now.change({:hour => 11 , :min => 0 , :sec => 0 })
+
     @team.team_memberships.build(email: current_user.email)
     2.times do
       @team.team_memberships.build
@@ -16,7 +25,7 @@ class Admin::TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.update_attributes(team_params)
-        format.html { redirect_to admin_customer_root_url, notice: "Team updated" }
+        format.html { redirect_to admin_teams_url, notice: "Team updated" }
       else
         format.html { render action: "edit" }
       end
@@ -29,7 +38,7 @@ class Admin::TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to admin_customer_root_url, notice: "Team created" }
+        format.html { redirect_to admin_teams_url, notice: "Team created" }
         format.json { render json: @team, status: :created, location: @team }
       else
         format.html { render action: "new" }
@@ -43,7 +52,7 @@ class Admin::TeamsController < ApplicationController
     @team.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_customer_root_url, notice: "Team deleted" }
+      format.html { redirect_to admin_teams_url, notice: "Team deleted" }
     end
   end
 

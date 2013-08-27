@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-		<h3>You're 60 seconds away from your own corporate alumni site</h3>
+		<h3>You're 60 seconds away from a Simple Status account</h3>
 
 		<div class="payment-errors alert alert-error"></div>
 
 		<%= simple_form_for @organization, html: { class: "form-vertical" } do |f| %>
 			<%= f.hidden_field :plan_id, value: @plan.id %>
 			<legend>Site details</legend>
-			<%= f.input :subdomain, label: "Subdomain", hint: "http://___.alumni.io" %>
+			<%= f.input :subdomain, label: "Subdomain", hint: "http://___.simplestatus.io" %>
 
 			<% unless current_user %>
 				<legend>Personal details</legend>

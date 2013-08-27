@@ -11,10 +11,10 @@ class ApplicationController < ActionController::Base
     	@current_organization = Organization.find_by_subdomain(request.subdomain)
     	ActionMailer::Base.default_url_options = { host: request.host_with_port }
 
-      if @current_organization.blank?
-      	flash[:error] = "Sorry, we can't find that site."
-        redirect_to customer_root_url(subdomain: "www")
-      end
+      # if @current_organization.blank?
+      # 	flash[:error] = "Sorry, we can't find that site."
+      #   redirect_to customer_root_url(subdomain: "www")
+      # end
     end
   end
 
