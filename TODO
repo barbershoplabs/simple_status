@@ -1,14 +1,8 @@
-Teams
-  StatusReport
-    StatusSummary
-
-Scheduler, runs every hour
-  Finds teams that send requests this day
-    For each team, checks to see if a report has already been sent for this week
-      If not
-        Creates a new StatusReport
-          Sends an email to every member of the team
-
-
-  Finds teams that send digests this day
-    ...
+Rake task for sending summaries to the team
+Make sure it's not exposing everyone's email addresses
+Admin tool for viewing status reports & updates
+  Show users who haven't submitted an update
+User tool for viewing status reports & updates
+Clean up the UI
+Improve the Stripe Plans (# of teams, # of members per team, etc)
+Reporting?

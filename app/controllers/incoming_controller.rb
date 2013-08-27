@@ -4,6 +4,10 @@ class IncomingController < ApplicationController
   def create
     email_recipient = params["recipient"] ||= ""
     email_sender = params["sender"] ||= ""
+
+    email_from = params["from"] ||= ""
+    email_from = email_from.split("<")[1].split(">")[0]
+
     email_stripped_text = params["stripped-text"] ||= ""
     email_date = params["Date"] ||= ""
     email_orig = params["body-plain"] ||= ""
@@ -22,11 +26,14 @@ class IncomingController < ApplicationController
     # puts "Token: #{email_report_token}"
 
     team = Team.team_from_email(email_recipient)
+    puts "TEAM IS: #{team.inspect}"
     if team.present?
       status_report = team.status_reports.where(token: email_report_token).first
 
       if status_report.present?
-        user = team.users.where(email: email_sender).first
+        puts "STATUS REPORT IS: #{status_report.inspect}"
+        user = team.users.where(email: email_from).first
+        puts "USER IS: #{user.inspect}"
         StatusSummary.create(status_report_id: status_report.id, user_id: user.id, body: email_stripped_text) if user.present?
       end
     end

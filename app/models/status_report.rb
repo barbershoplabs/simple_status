@@ -1,7 +1,7 @@
 class StatusReport < ActiveRecord::Base
   belongs_to :team
   belongs_to :organization
-  has_many :status_summaries
+  has_many :status_summaries, dependent: :destroy
 
   before_create do
     generate_token(:token)
