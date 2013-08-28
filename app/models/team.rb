@@ -21,7 +21,7 @@ class Team < ActiveRecord::Base
   def create_on_mailgun
     route = MailgunConfig.client.routes.create "Route for #{self.organization.subdomain} / #{self.name}", 1,
      [:match_recipient, self.email],
-     [[:forward, "http://2c7ce99a.ngrok.com/incoming"],[:stop]]
+     [[:forward, "http://simplestatus.io/incoming"],[:stop]]
 
      self.mailgun_route = route
      self.save
