@@ -8,19 +8,25 @@
   <script type="text/javascript">Stripe.setPublishableKey('pk_sgMGdcpy0H8F1OqdH0J7esjxavF0O');</script>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <div class="navbar">
+<body data-spy="scroll" data-target=".navbar">
+  <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01">
-        </button>
         <%= link_to "Simple Status", master_root_url, class: "brand" %>
         <div class="nav-collapse collapse" id="nav-collapse-01">
           <ul class="nav">
-            <li><%= link_to "Pricing", "/pricing" %></li>
-            <li><%= link_to "Support", "/support" %></li>
-            <li><%= link_to "Blog", "/blog" %></li>
+            <li><%= link_to "Features", "#features" %></li>
+            <li><%= link_to "Pricing", "#pricing" %></li>
           </ul> <!-- /nav -->
+          <ul class="nav pull-right">
+            <% if current_user %>
+              <li><%= link_to "Signed in as: #{current_user.email}", "#" %></li>
+              <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to 'Sign In', new_user_session_path %></li>
+            <% end %>
+         </ul>
+
         </div>
       </div>
     </div>
@@ -33,11 +39,23 @@
   </div>
   <% end %>
 
-<div class="container">
-  <div class="row">
-    <%= yield %>
-  </div>
-</div>
+  <% unless params[:controller] == 'home' %>
+    <div class="container">
+    <div class="row">
+      <br/><br/><br/>
+  <% end %>
+
+  <%= yield %>
+
+  <% unless params[:controller] == 'home' %>
+    </div>
+    </div>
+  <% end %>
+
+
+  <script>
+    $('#navbar').scrollspy()
+  </script>
 
 </body>
 </html>

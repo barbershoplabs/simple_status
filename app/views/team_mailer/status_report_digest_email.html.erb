@@ -1,0 +1,25 @@
+<p>Hello from Simple Status!</p>
+
+<p>Here's the latest digest of activity for team: <%= @team.name %></p>
+
+<% @status_summaries.each do |status_summary| %>
+
+<hr/>
+<p><%= status_summary.user.email %> did the following:</p>
+<p><%= simple_format(status_summary.body) %></p>
+<hr/>
+<% end %>
+
+<br/>
+<% if @no_response_from.present? %>
+<P>We did not receive updates from:</P>
+<ul>
+<% @no_response_from.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+</ul>
+<% end %>
+
+<br/><br/>
+<p>Have a great day,<br/>
+Your friends at Simple Status</p>

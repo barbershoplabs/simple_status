@@ -1,5 +1,5 @@
 module MailgunConfig
   def self.client
-    Mailgun(:api_key => 'key-5f887a3c17ktk3jnij7xwwveizcsj6e3', :domain => 'adamrubin.mailgun.org')
+    Mailgun(:api_key => 'key-06z2yx95tzrvgcuzqn6rlomzukdjr049', :domain => 'app.simplestatus.io')
   end
 end

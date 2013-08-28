@@ -35,9 +35,9 @@ module SimpleStatus
       :authentication => :plain,
       :address => "smtp.mailgun.org",
       :port => 587,
-      :domain => "adamrubin.mailgun.org",
-      :user_name => "postmaster@adamrubin.mailgun.org",
-      :password => "9jrzpzexa7q8"
+      :domain => "app.simplestatus.io",
+      :user_name => "postmaster@app.simplestatus.io",
+      :password => "77psfvjthuq4"
     }
       # :enable_starttls_auto => true,
 

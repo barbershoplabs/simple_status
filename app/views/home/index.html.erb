@@ -1,106 +1,102 @@
-<div class="span12" style="text-align: center">
-
-  <hr/>
-  <h1>Status reports suck.</h1>
-  <h1>We make them suck less.</h1>
-  <hr/>
-  <br/><br/>
-
-  <div class="row demo-tiles">
-    <div class="span3">
-      <div style="height: 200px">
-        <img src="/assets/icons/Spaceship@2x.png" alt="Infinity-Loop_2x" class="tile-image">
+<div class="dark">
+  <div class="container">
+    <div class="row">
+      <div class="span6">
+        <div id="top-header">
+          <h1>Status reports suck.</h1>
+          <h1>We make them suck less.</h1>
+        </div>
       </div>
-      <h3 class="tile-title">Quick and painless</h3>
-      <p>You have more important things to do. Status reports shouldn't require filling out long forms, or a big team meeting.</p>
-      <p>Simple Status will send you an email. You reply with your status. Done!</p>
-    </div>
-
-    <div class="span3">
-      <div style="height: 200px">
-        <img src="/assets/icons/Settings@2x.png" alt="Infinity-Loop_2x" class="tile-image">
+      <div class="span6">
+        <%= image_tag "screenshot.png" %>
       </div>
-      <h3 class="tile-title">Customizable</h3>
-      <p>You create your own teams, pick when the requests should go out, when the digests are sent, etc.</p>
-      <p>Set it, forget it, and we'll handle the rest.</p>
-    </div>
-
-    <div class="span3">
-      <div style="height: 200px">
-        <img src="/assets/icons/Bulb@2x.png" alt="Infinity-Loop_2x" class="tile-image">
-      </div>
-
-      <h3 class="tile-title">Supah smart</h3>
-      <p>There's value in knowing what everyone is working on, and not just for Mrs. Manager.</p>
-      <p>We automatically send everyone a digest of the team's updates, and keep a history to record the progress.</p>
-    </div>
-
-
-    <div class="span3">
-      <div style="height: 200px">
-        <img src="/assets/icons/Egg@2x.png" alt="Infinity-Loop_2x" class="tile-image">
-      </div>
-      <h3 class="tile-title">Egg-cellent</h3>
-      <p>I've run out of things to say. It's that simple.</p>
-      <P>So, enjoy this wonderful picture of an egg.</P>
     </div>
   </div>
+</div>
 
-  <br/>
-  <hr/>
-  <br/>
+<div id="features" class="container">
+  <div class="row">
+    <div id="tiles" class="span12" style="text-align: center">
+      <div class="row demo-tiles">
 
-  <div class="row-fluid plan-container">
-    <div class="plan-container span4 no-margin center-group col-3">
-      <ul class="plan shadow-lifted  bootstrap-green  col-3 center-group hover-animate-position" data-reset="plan shadow-lifted  bootstrap-green  col-3 center-group hover-animate-position">
-        <li class="plan-name">Basic</li>
-        <li class="plan-price">$10/mo</li>
-        <li>Create a single status report team</li>
-        <li>Add up to 20 members per team.</li>
-        <li>Send weekly status reports</li>
-        <li>Email-based Support</li>
-        <li>Unlimited status reports</li>
-        <li>Limited reporting</li>
-        <li class="plan-footer">
-          <%= link_to new_organization_path(plan: 5), :class => 'pricing-select' do %><i class="icon-lock-open-alt"></i>Sign Up Now<% end %>
-        </li>
-      </ul><div class="divider visible-phone"></div>
+        <div class="span4">
+          <div style="height: 200px">
+            <img src="/assets/icons/Settings@2x.png">
+          </div>
+          <h3>Simple Setup</h3>
+          <p class="lead">You create status report groups, decide when the requests should go out and when the digests are sent.</p>
+          <p class="lead">That's it, we'll handle the rest.</p>
+        </div>
 
-    </div>
 
-    <div class="plan-container span4 no-margin featured">
-      <ul class="plan shadow-lifted  bootstrap-orange featured hover-animate-position" data-reset="plan shadow-lifted  bootstrap-orange featured hover-animate-position">
-        <li class="plan-name">Premium</li>
-        <li class="plan-price">$50/mo</li>
-        <li>Create up to five status report teams</li>
-        <li>Add up to 50 members per team.</li>
-        <li>Send daily, weekly, or monthly status reports</li>
-        <li>Email-based Support</li>
-        <li>Unlimited status reports</li>
-        <li>Advanced reporting</li>
-        <li class="plan-footer">
-          <%= link_to new_organization_path(plan: 5), :class => 'pricing-select' do %><i class="icon-lock-open-alt"></i>Sign Up Now<% end %>
-        </li>
-      </ul><div class="divider visible-phone"></div>
-    </div>
+        <div class="span4">
+          <div style="height: 200px">
+            <img src="/assets/icons/Spaceship@2x.png">
+         </div>
+         <h3>Quick and Painless</h3>
+         <p class="lead">Status reports shouldn't require filling out long forms, or long team meetings.</p>
+         <p class="lead">Simple Status sends your team an email. They reply with their status. Done!</p>
+        </div>
 
-    <div class="plan-container span4 no-margin">
-      <ul class="plan shadow-lifted  bootstrap-green hover-animate-position" data-reset="plan shadow-lifted  bootstrap-green hover-animate-position">
-        <li class="plan-name">Enterprise</li>
-        <li class="plan-price">$250/mo</li>
-        <li>Create unlimited status report teams</li>
-        <li>Add up to 500 members per team.</li>
-        <li>Send daily, weekly, or monthly status reports</li>
-        <li>Premium 24hrs support</li>
-        <li>Unlimited status reports</li>
-        <li>Advanced reporting</li>
-        <li class="plan-footer">
-          <%= link_to new_organization_path(plan: 5), :class => 'pricing-select' do %><i class="icon-lock-open-alt"></i>Sign Up Now<% end %>
-        </li>
-      </ul><div class="divider visible-phone"></div>
+        <div class="span4">
+          <div style="height: 200px">
+            <img src="/assets/icons/Bulb@2x.png">
+          </div>
+
+          <h3>Full Visibility</h3>
+          <p class="lead">We automatically send the team a digest with everyone's updates.</p>
+          <p class="lead">Everyone has access to a web-based report to track progress over time.</p>
+        </div>
+
+      </div>
     </div>
   </div>
+</div>
 
+<div id="pricing" class="light" style="text-align: center;">
+  <div class="container">
+    <div class="row">
+      <div class="row-fluid plan-container">
+        <div class="plan-container span4 no-margin center-group col-3">
+          <ul class="plan shadow-lifted  bootstrap-green  col-3 center-group hover-animate-position" data-reset="plan shadow-lifted  bootstrap-green  col-3 center-group hover-animate-position">
+            <li class="plan-name">Basic</li>
+            <li class="plan-price">$15/mo</li>
+            <li>Create a single status report team</li>
+            <li>Unlimited status reports</li>
+            <li>Email-based Support</li>
+            <li class="plan-footer">
+              <%= link_to new_organization_path(plan: 5), :class => 'pricing-select' do %><i class="icon-lock-open-alt"></i>Sign Up Now<% end %>
+            </li>
+          </ul><div class="divider visible-phone"></div>
 
+        </div>
 
+        <div class="plan-container span4 no-margin featured">
+          <ul class="plan shadow-lifted  bootstrap-orange featured hover-animate-position" data-reset="plan shadow-lifted  bootstrap-orange featured hover-animate-position">
+            <li class="plan-name">Premium</li>
+            <li class="plan-price">$50/mo</li>
+            <li>Create up to five status report teams</li>
+            <li>Unlimited status reports</li>
+            <li>Email-based Support</li>
+            <li class="plan-footer">
+              <%= link_to new_organization_path(plan: 5), :class => 'pricing-select' do %><i class="icon-lock-open-alt"></i>Sign Up Now<% end %>
+            </li>
+          </ul><div class="divider visible-phone"></div>
+        </div>
+
+        <div class="plan-container span4 no-margin">
+          <ul class="plan shadow-lifted  bootstrap-green hover-animate-position" data-reset="plan shadow-lifted  bootstrap-green hover-animate-position">
+            <li class="plan-name">Enterprise</li>
+            <li class="plan-price">$250/mo</li>
+            <li>Create unlimited status report teams</li>
+            <li>Unlimited status reports</li>
+            <li>Premium 24hrs support</li>
+            <li class="plan-footer">
+              <%= link_to new_organization_path(plan: 5), :class => 'pricing-select' do %><i class="icon-lock-open-alt"></i>Sign Up Now<% end %>
+            </li>
+          </ul><div class="divider visible-phone"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

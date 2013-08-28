@@ -15,7 +15,7 @@ class Team < ActiveRecord::Base
   after_destroy :destroy_on_mailgun
 
   def email
-    "#{self.organization.subdomain.downcase}.#{self.name.downcase.tr(' ','-')}@adamrubin.mailgun.org"
+    "#{self.organization.subdomain.downcase}.#{self.name.downcase.tr(' ','-')}@app.simplestatus.io"
   end
 
   def create_on_mailgun

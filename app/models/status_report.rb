@@ -2,6 +2,7 @@ class StatusReport < ActiveRecord::Base
   belongs_to :team
   belongs_to :organization
   has_many :status_summaries, dependent: :destroy
+  has_many :users, through: :status_summaries
 
   before_create do
     generate_token(:token)
@@ -44,12 +45,20 @@ class StatusReport < ActiveRecord::Base
     end
   end
 
+  def self.send_status_report_digests
+    StatusReport.where(sent_digest_at: nil).each do |status_report|
+      team = status_report.team
+      time_now = Time.now.in_time_zone(team.timezone)
 
-  # Finds teams that send requests this day
-  #   For each team, checks to see if a report has already been sent for this week
-  #     If not
-  #       Creates a new StatusReport
-  #         Sends an email to every member of the team
+      created_at = status_report.created_at.in_time_zone(team.timezone)
+      send_at_date = created_at.beginning_of_day + team.send_digest_days_later.days
+      send_at_date_time = send_at_date.change(hour: team.send_digest_at.hour, minute: team.send_digest_at.min)
 
-
+      if time_now > send_at_date_time
+        TeamMailer.status_report_digest_email(status_report).deliver
+        status_report.sent_digest_at = Time.now
+        status_report.save
+      end
+    end
+  end
 end
