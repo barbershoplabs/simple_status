@@ -1,8 +1,8 @@
-Rake task for sending summaries to the team
 Make sure it's not exposing everyone's email addresses
-Admin tool for viewing status reports & updates
-  Show users who haven't submitted an update
+Uppercase team names in the UI
+Cancel account
+Team limit, based on plan.
 User tool for viewing status reports & updates
 Clean up the UI
-Improve the Stripe Plans (# of teams, # of members per team, etc)
+Logging in from master domain
 Reporting?
