@@ -1,5 +1,5 @@
 <div class="span12">
-  <h1>Status report for team: <%= @status_report.team.name %></h1>
+  <h1>Status report for team: <%= @status_report.team.name.titleize %></h1>
   <h2><%= @status_report.created_at.strftime("%m/%d/%Y at %l:%M%p") %></h2>
   <hr/>
   <h3>Updates from the team:</h3>

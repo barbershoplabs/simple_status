@@ -14,7 +14,7 @@
     <tbody>
       <% @status_reports.each do |status_report| %>
       <tr>
-        <td><%= status_report.team.name %></td>
+        <td><%= status_report.team.name.titleize %></td>
         <td><%= status_report.created_at.strftime("%m/%d/%Y at %l:%M%p") %></td>
         <td>
           <%= link_to 'View status updates', admin_status_report_path(status_report) %> |

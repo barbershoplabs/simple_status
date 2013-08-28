@@ -5,7 +5,7 @@ class TeamMailer < ActionMailer::Base
     @team = team
     @organization = organization
     @token = token
-    mail(from: @team.email, to: @team.users.pluck(:email), subject: "[#{@team.name}] status report request")
+    mail(from: @team.email, to: @team.users.pluck(:email), subject: "[#{@team.name.titleize}] status report request")
   end
 
   def status_report_digest_email(status_report)
@@ -14,6 +14,6 @@ class TeamMailer < ActionMailer::Base
     @status_summaries = @status_report.status_summaries
     @no_response_from = @team.users - @status_report.users
 
-    mail(from: @team.email, to: @team.users.pluck(:email), subject: "[#{@team.name}] status report digest")
+    mail(from: @team.email, to: @team.users.pluck(:email), subject: "[#{@team.name.titleize}] status report digest")
   end
 end
