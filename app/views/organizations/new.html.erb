@@ -1,48 +1,46 @@
-<div class="container">
-  <div class="row">
-		<h3>You're 60 seconds away from a Simple Status account</h3>
+<div class="span12">
+	<h3>You're 60 seconds away from a Simple Status account</h3>
 
-		<div class="payment-errors alert alert-error"></div>
+	<div class="payment-errors alert alert-error"></div>
 
-		<%= simple_form_for @organization, html: { class: "form-vertical" } do |f| %>
-			<%= f.hidden_field :plan_id, value: @plan.id %>
-			<legend>Site details</legend>
-			<%= f.input :subdomain, label: "Subdomain", hint: "http://___.simplestatus.io" %>
+	<%= simple_form_for @organization, html: { class: "form-vertical" } do |f| %>
+		<%= f.hidden_field :plan_id, value: @plan.id %>
+		<legend>Site details</legend>
+		<%= f.input :subdomain, label: "Subdomain", hint: "http://___.simplestatus.io" %>
 
-			<% unless current_user %>
-				<legend>Personal details</legend>
-				<%= f.fields_for :users do |f| %>
-					<%= f.input :email %>
-					<%= f.input :password %>
-					<%= f.input :password_confirmation %>
-				<% end %>
+		<% unless current_user %>
+			<legend>Personal details</legend>
+			<%= f.fields_for :users do |f| %>
+				<%= f.input :email %>
+				<%= f.input :password %>
+				<%= f.input :password_confirmation %>
 			<% end %>
-
-			<legend>Billing Information</legend>
-			<div class="control-group string">
-				<label class="string optional control-label">Card Number</label>
-				<div class="controls">
-					<input type="text" size="20" autocomplete="off" class="card-number"/>
-				</div>
-			</div>
-			<div class="control-group string">
-				<label class="string optional control-label">CVC</label>
-				<div class="controls">
-					<input type="text" size="4" autocomplete="off" class="card-cvc"/>
-				</div>
-			</div>
-			<div class="control-group string">
-				<label class="string optional control-label">Expiration (MM/YYYY)</label>
-				<div class="controls">
-					<input type="text" size="2" class="card-expiry-month"/>
-					<span> / </span>
-					<input type="text" size="4" class="card-expiry-year"/>
-				</div>
-			</div>
-
-			<%= f.submit nil, class: 'btn btn-primary' %>
 		<% end %>
-	</div>
+
+		<legend>Billing Information</legend>
+		<div class="control-group string">
+			<label class="string optional control-label">Card Number</label>
+			<div class="controls">
+				<input type="text" size="20" autocomplete="off" class="card-number"/>
+			</div>
+		</div>
+		<div class="control-group string">
+			<label class="string optional control-label">CVC</label>
+			<div class="controls">
+				<input type="text" size="4" autocomplete="off" class="card-cvc"/>
+			</div>
+		</div>
+		<div class="control-group string">
+			<label class="string optional control-label">Expiration (MM/YYYY)</label>
+			<div class="controls">
+				<input type="text" size="2" class="card-expiry-month"/>
+				<span> / </span>
+				<input type="text" size="4" class="card-expiry-year"/>
+			</div>
+		</div>
+
+		<%= f.submit nil, class: 'btn btn-primary' %>
+	<% end %>
 </div>
 
 <script>
