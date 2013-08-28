@@ -25,6 +25,7 @@ class IncomingController < ApplicationController
     # puts "Email date: #{email_date}"
     # puts "Token: #{email_report_token}"
 
+    puts "EMAIL RECIPIENT IS: #{email_recipient}"
     team = Team.team_from_email(email_recipient)
     puts "TEAM IS: #{team.inspect}"
     if team.present?
