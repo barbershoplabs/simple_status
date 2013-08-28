@@ -13,6 +13,11 @@ class Team < ActiveRecord::Base
   after_create :create_on_mailgun
   # after_save :update_on_mailgun
   after_destroy :destroy_on_mailgun
+  before_save :downcase_name
+
+  def downcase_name
+    self.name = self.name.downcase
+  end
 
   def email
     "#{self.organization.subdomain.downcase}.#{self.name.downcase.tr(' ','-')}@app.simplestatus.io"
