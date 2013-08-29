@@ -27,6 +27,7 @@ module SimpleStatus
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]  # include all subdirectories
 
+    config.assets.paths << "#{Rails.root}/vendor/assets/fonts"
 
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.perform_deliveries = true
