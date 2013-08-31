@@ -1,3 +1,51 @@
 <div class="span12">
-  <h1>Admin homepage</h1>
+  <h1><%= @current_organization.subdomain.humanize%> Administration</h1>
+
+  <% if @teams.empty? %>
+  <div class="alert alert-info">
+    <h3>Create your first team to get started</h3>
+    <p>A status report team consists of a group of users, and settings for when status report requests and digests should be sent.</p>
+    <%= link_to 'get started', new_admin_team_path, class: 'btn btn-info btn-wide' %>
+  </div>
+  <% else %>
+    <br/><br/>
+    <div class="row">
+      <div class="span6">
+        <div class="alert alert-info">
+          <h3>Manage your <%= pluralize_without_count("Team", @teams.count) %></h3>
+          <p>Change scheduling settings, add/remove members, etc.</p>
+          <%= link_to 'Manage Teams', admin_teams_path, class: 'btn btn-info btn-wide' %>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="alert alert-info">
+          <h3>Manage your Status Reports</h3>
+          <p>View an archive of all Status Reports.</p>
+          <%= link_to 'Manage Status Reports', admin_status_reports_path, class: 'btn btn-info btn-wide' %>
+        </div>
+      </div>
+    </div>
+
+    <br/><br/>
+    <p class="lead">Sorry, we're still finishing up this section.</p>
+    <p class="lead">If you need to make a change, please contact <%= mail_to 'support@barbershoplabs.com'%></p>
+
+    <div class="row">
+      <div class="span6">
+        <div class="alert alert-info">
+          <h3>Reporting</h3>
+          <p>Organizational analysis of productivity by team and employee.</p>
+          <%= link_to 'View Reports', '#', class: 'btn btn-wide' %>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="alert alert-info">
+          <h3>Manage your Account</h3>
+          <p>Manage users, upgrade/downgrade/cancel, view billing history, etc</p>
+          <%= link_to 'Manage Account', '#', class: 'btn btn-wide' %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
 </div>

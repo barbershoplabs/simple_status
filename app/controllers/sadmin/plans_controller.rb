@@ -1,4 +1,7 @@
 class Sadmin::PlansController < ApplicationController
+  before_filter :authenticate_user!
+  authorize_resource
+
 	def index
 		@plans = Plan.all
 	end

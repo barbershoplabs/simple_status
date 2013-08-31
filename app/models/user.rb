@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
   has_many :memberships, dependent: :delete_all
   has_many :organizations, through: :memberships
   has_many :team_memberships
+  has_many :teams, through: :team_memberships
   has_many :status_summaries
+  has_many :status_reports, through: :teams
   before_save :downcase_email
 
   # Include default devise modules. Others available are:

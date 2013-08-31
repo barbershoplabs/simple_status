@@ -29,7 +29,10 @@
   <br/>
   <% end %>
 
-  <%= link_to new_admin_team_path, class: "btn btn-primary" do %>
-  Create a New Team</a>
+  <% if @current_organization.teams_remaining_per_plan? %>
+    <%= link_to 'Create a New Team', new_admin_team_path, class: "btn btn-primary" %>
+  <% else %>
+      <br/><br/><br/>
+      <p class="alert">You have reached your Teams limit. To create more teams, please upgrade your account.</p>
   <% end %>
 </div>

@@ -12,4 +12,8 @@ class Organization < ActiveRecord::Base
   def owner
     memberships.where("role = ?", "owner").first.user
   end
+
+  def teams_remaining_per_plan?
+    teams.count < Plan::CONSTRAINTS[self.plan.name.to_sym][:teams] ? true : false
+  end
 end

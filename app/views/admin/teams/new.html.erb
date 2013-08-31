@@ -1,4 +1,12 @@
 <div class="span12">
   <h2>New Status Report Team</h1>
-  <%= render 'form' %>
+
+  <% if @current_organization.teams_remaining_per_plan? %>
+    <%= render 'form' %>
+  <% else %>
+    <div class="alert alert-error">
+      <button type="button" class="close fui-cross" data-dismiss="alert"></button>
+      You have reached your Teams limit. To create more teams, please upgrade your account.
+    </div>
+  <% end %>
 </div>

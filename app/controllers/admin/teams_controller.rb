@@ -1,4 +1,7 @@
 class Admin::TeamsController < ApplicationController
+  before_filter :authenticate_user!
+  authorize_resource
+
   def index
     @teams = @current_organization.teams
   end
@@ -33,17 +36,21 @@ class Admin::TeamsController < ApplicationController
   end
 
   def create
-    @team = Team.new(team_params)
-    @team.organization_id = @current_organization.id
+    if @current_organization.teams_remaining_per_plan?
+      @team = Team.new(team_params)
+      @team.organization_id = @current_organization.id
 
-    respond_to do |format|
-      if @team.save
-        format.html { redirect_to admin_teams_url, notice: "Team created" }
-        format.json { render json: @team, status: :created, location: @team }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @team.save
+          format.html { redirect_to admin_teams_url, notice: "Team created" }
+          format.json { render json: @team, status: :created, location: @team }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @team.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to admin_home_url, alert: "You've already created the maximum number of teams for your plan"
     end
   end
 

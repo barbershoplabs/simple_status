@@ -1,7 +1,0 @@
-<div class="span12">
-  <h1>Your Teams</h1>
-  <p class="lead">You are a member of the following teams:</p>
-  <% @team_memberships.each do |team_membership| %>
-    <p><%= team_membership.team.name.humanize %></p>
-  <% end %>
-</div>

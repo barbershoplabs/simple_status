@@ -1,0 +1,10 @@
+<div class="span12">
+  <h1>Your Status Reports</h1>
+
+  <% @status_reports.each do |status_report| %>
+    <p class="lead">
+      Team <%= status_report.team.name.humanize %> for
+      <%= link_to status_report.created_at.in_time_zone(status_report.team.timezone).strftime("%m/%d/%Y at %l:%M%p"), status_report_path(status_report) %>
+    </p>
+  <% end %>
+</div>

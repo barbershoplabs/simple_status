@@ -1,7 +1,8 @@
 class Admin::HomeController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     authorize!(:index, :admin_home)
-
-    @teams = Team.where(organization_id: @current_organization.id)
+    @teams = @current_organization.teams
   end
 end

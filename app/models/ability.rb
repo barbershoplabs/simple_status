@@ -16,6 +16,8 @@ class Ability
 
   def member
   	guest
+    can [:index, :show], StatusReport
+
 #  	can :read, Site
 #  	can :update, User, id: @user.id
   end
@@ -24,6 +26,7 @@ class Ability
   	member
     can :index , :admin_home
     can :manage, Team, organization_id: @membership.organization_id
+    can :manage, StatusReport, organization_id: @membership.organization_id
   end
 
   def owner

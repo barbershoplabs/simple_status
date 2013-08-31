@@ -1,0 +1,6 @@
+<% flash.each do |name, msg| %>
+  <div class="dialog dialog-<%= name == :notice ? "success" : "error" %>">
+    <%= msg %>
+    <button type="button" class="close fui-cross" data-dismiss="alert"></button>
+  </div>
+<% end %>

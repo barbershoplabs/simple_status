@@ -30,7 +30,7 @@ SimpleStatus::Application.routes.draw do
     end
 
     # customer routes here
-    root to: 'customer_home#index', as: 'customer_root'
+    root to: 'status_reports#index', as: 'customer_root'
     resources :status_reports
   end
 end

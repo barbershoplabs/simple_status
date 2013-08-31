@@ -1,4 +1,7 @@
 class Admin::StatusReportsController < ApplicationController
+  before_filter :authenticate_user!
+  authorize_resource
+
   def index
     @status_reports = @current_organization.status_reports
   end
