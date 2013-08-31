@@ -27,20 +27,18 @@
     </div>
 
     <br/><br/>
-    <p class="lead">Sorry, we're still finishing up this section.</p>
-    <p class="lead">If you need to make a change, please contact <%= mail_to 'support@barbershoplabs.com'%></p>
 
     <div class="row">
       <div class="span6">
         <div class="alert alert-info">
           <h3>Manage your Account</h3>
           <p>Manage users, upgrade/downgrade/cancel, view billing history, etc</p>
-          <%= link_to 'Manage Account', admin_organization_path(@current_organization), class: 'btn btn-wide' %>
+          <%= link_to 'Manage Account', admin_organization_path(@current_organization), class: 'btn btn-info btn-wide' %>
         </div>
       </div>
       <div class="span6">
         <div class="alert alert-info">
-          <h3>Reporting</h3>
+          <h3>Reporting (Coming Soon)</h3>
           <p>Organizational analysis of productivity by team and employee.</p>
           <%= link_to 'View Reports', '#', class: 'btn btn-wide' %>
         </div>

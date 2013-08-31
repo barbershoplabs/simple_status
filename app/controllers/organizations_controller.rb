@@ -23,7 +23,7 @@ class OrganizationsController < ApplicationController
       if @organization.save
 
         if current_user
-          Membership.create(user_id: current_user.id, organization_id: @organization.id, role: "owner")
+          membership = Membership.create(user_id: current_user.id, organization_id: @organization.id, role: "owner")
         else
           current_user = @organization.users.first
           membership = Membership.where("organization_id = ?", @organization.id).first
@@ -31,6 +31,8 @@ class OrganizationsController < ApplicationController
           membership.save
           sign_in(current_user)
         end
+
+        OrganizationMailer.welcome_email(@organization, membership.user).deliver
 
         format.html { redirect_to(admin_customer_root_url(subdomain: @organization.subdomain)) }
         format.json { render json: @organization, status: :created, location: @organization }
