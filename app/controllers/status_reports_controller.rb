@@ -1,6 +1,7 @@
 class StatusReportsController < ApplicationController
   before_filter :authenticate_user!
   authorize_resource
+  before_filter :check_organization_status
 
   def index
     @status_reports = current_user.status_reports

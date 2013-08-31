@@ -33,16 +33,16 @@
     <div class="row">
       <div class="span6">
         <div class="alert alert-info">
-          <h3>Reporting</h3>
-          <p>Organizational analysis of productivity by team and employee.</p>
-          <%= link_to 'View Reports', '#', class: 'btn btn-wide' %>
+          <h3>Manage your Account</h3>
+          <p>Manage users, upgrade/downgrade/cancel, view billing history, etc</p>
+          <%= link_to 'Manage Account', admin_organization_path(@current_organization), class: 'btn btn-wide' %>
         </div>
       </div>
       <div class="span6">
         <div class="alert alert-info">
-          <h3>Manage your Account</h3>
-          <p>Manage users, upgrade/downgrade/cancel, view billing history, etc</p>
-          <%= link_to 'Manage Account', '#', class: 'btn btn-wide' %>
+          <h3>Reporting</h3>
+          <p>Organizational analysis of productivity by team and employee.</p>
+          <%= link_to 'View Reports', '#', class: 'btn btn-wide' %>
         </div>
       </div>
     </div>

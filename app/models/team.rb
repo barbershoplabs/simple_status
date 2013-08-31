@@ -16,6 +16,10 @@ class Team < ActiveRecord::Base
   after_destroy :destroy_on_mailgun
   before_save :downcase_name
 
+  STATUSES.keys.each do |status|
+    scope status, -> { where("status = ?", STATUSES[status]) }
+  end
+
   def downcase_name
     self.name = self.name.downcase
   end

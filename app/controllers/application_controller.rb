@@ -9,18 +9,15 @@ class ApplicationController < ActionController::Base
 
 	def load_organization
     if request.subdomain.present? && request.subdomain != "www"
-    	@current_organization = Organization.find_by_subdomain(request.subdomain)
+    	@current_organization = Organization.where(subdomain: request.subdomain).first
     	ActionMailer::Base.default_url_options = { host: request.host_with_port }
     end
   end
 
-  ## If there's a real tenant and no current_user, or a current_user, but they're not a member of the tenant, boot them
-  def check_access
-    unless ["sessions", "registrations", "password_resets"].include? controller_path
-      if @current_organization && !current_user
-        respond_to do |format|
-          format.html { render template: "/organizations/no_access" }
-        end
+  def check_organization_status
+    if @current_organization.inactive?
+      respond_to do |format|
+        format.html { render template: "/organizations/inactive" }
       end
     end
   end

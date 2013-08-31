@@ -1,0 +1,14 @@
+<div class="span12">
+
+<%= simple_form_for [:admin, @organization], html: { class: "form-vertical" } do |f| %>
+  <% if @organization.active? %>
+    <%= f.hidden_field :status, value: Organization::STATUSES[:inactive] %>
+    <%= f.submit 'Deactivate Account', class: 'btn btn-danger' %>
+  <% elsif @organization.inactive? %>
+    <%= f.hidden_field :status, value: Organization::STATUSES[:active] %>
+    <%= f.submit 'Re-activate Account', class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
+
+
+</div>

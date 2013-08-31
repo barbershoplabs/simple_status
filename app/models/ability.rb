@@ -27,6 +27,7 @@ class Ability
     can :index , :admin_home
     can :manage, Team, organization_id: @membership.organization_id
     can :manage, StatusReport, organization_id: @membership.organization_id
+    can [:show, :update, :destroy], Organization, organization_id: @membership.organization_id
   end
 
   def owner

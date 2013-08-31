@@ -27,6 +27,7 @@ SimpleStatus::Application.routes.draw do
       resources :teams
       resources :status_reports
       resources :status_summaries
+      resources :organizations
       root to: 'home#index', as: 'customer_root'
     end
 

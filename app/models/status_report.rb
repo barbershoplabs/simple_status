@@ -21,7 +21,7 @@ class StatusReport < ActiveRecord::Base
   end
 
   def self.send_status_reports
-    Team.all.each do |team|
+    Team.joins(:organization).where("organizations.status = ?", Organization::STATUSES[:active]).each do |team|
 
       time_now = Time.now.in_time_zone(team.timezone)
 
@@ -46,7 +46,7 @@ class StatusReport < ActiveRecord::Base
   end
 
   def self.send_status_report_digests
-    StatusReport.where(sent_digest_at: nil).each do |status_report|
+    StatusReport.joins(:organization).where("organizations.status = ? and sent_digest_at = ?", Organization::STATUSES[:active], nil).each do |status_report|
       team = status_report.team
       time_now = Time.now.in_time_zone(team.timezone)
 
