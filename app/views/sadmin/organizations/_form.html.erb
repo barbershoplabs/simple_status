@@ -1,0 +1,9 @@
+<%= simple_form_for [:sadmin, @organization], html: { class: "form-vertical" } do |f| %>
+  <%= f.input :subdomain %>
+  <%= f.input :name %>
+  <%= f.input :stripe_customer_id %>
+  <%= f.input :plan_id %>
+  <%= f.input :status, collection: Organization::STATUSES %>
+  <br/>
+  <%= f.submit nil, class: 'btn btn-primary' %>
+<% end %>

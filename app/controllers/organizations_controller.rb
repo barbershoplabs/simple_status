@@ -14,7 +14,10 @@ class OrganizationsController < ApplicationController
       :card => token,
       :plan => "simple_status_plan_#{@organization.plan_id}"
     )
+
     @organization.stripe_customer_id = customer.id
+    @organization.status = Organization::STATUSES[:active]
+    @organization.name = @organization.subdomain
 
     respond_to do |format|
       if @organization.save

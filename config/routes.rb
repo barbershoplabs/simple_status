@@ -5,6 +5,7 @@ SimpleStatus::Application.routes.draw do
     # platform admin routes here
     namespace "sadmin" do
       resources :plans
+      resources :organizations
       root to: 'home#index', as: 'master_root'
     end
 

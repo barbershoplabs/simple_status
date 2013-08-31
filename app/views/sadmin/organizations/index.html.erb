@@ -1,0 +1,43 @@
+<div class="span12">
+  <h1>Listing Organizations (<%= @organizations.size %>)</h1>
+
+  <% if @organizations.present? %>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Subdomain</th>
+        <th>Name</th>
+        <th>Stripe ID</th>
+        <th>Plan ID</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= organization.subdomain %></td>
+        <td><%= organization.name %></td>
+        <td><%= organization.stripe_customer_id %></td>
+        <td><%= organization.plan_id %></td>
+        <td><%= organization.status %></td>
+        <td>
+          <%= link_to 'Edit', edit_sadmin_organization_path(organization) %> |
+          <%= link_to 'Delete', [:sadmin, organization], data: { confirm: "Are you sure?" }, method: :delete %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% else %>
+  <br/>
+  <p>No organizations have been created yet.</p>
+  <br/>
+  <% end %>
+
+  <%= link_to new_sadmin_organization_path, class: "btn btn-primary" do %>
+  Create a New Organization</a>
+  <% end %>
+</div>

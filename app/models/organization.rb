@@ -1,9 +1,11 @@
 class Organization < ActiveRecord::Base
+  STATUSES = { inactive: 0, active: 1 }
+
   belongs_to :plan
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
-  has_many :teams
-  has_many :status_reports
+  has_many :teams, dependent: :destroy
+  has_many :status_reports, dependent: :destroy
 
   accepts_nested_attributes_for :users
 
