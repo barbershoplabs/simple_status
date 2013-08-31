@@ -14,6 +14,6 @@ class Organization < ActiveRecord::Base
   end
 
   def teams_remaining_per_plan?
-    teams.count < Plan::CONSTRAINTS[self.plan.name.to_sym][:teams] ? true : false
+    teams.count < Plan::CONSTRAINTS[plan.name.to_sym][:teams] ? true : false
   end
 end
