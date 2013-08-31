@@ -1,11 +1,11 @@
 <div class="span12">
   <h1>Report for team: <%= status_report.team.name.titleize %></h1>
-  <h3><%= status_report.created_at.strftime("%m/%d/%Y at %l:%M%p") %></h3>
+  <h3><%= status_report.created_at.in_time_zone(status_report.team.timezone).strftime("%m/%d/%Y at %l:%M%p") %></h3>
   <hr/>
 
   <% if status_report.status_summaries.present? %>
     <% status_report.status_summaries.each do |status_summary| %>
-      <strong><%= status_summary.user.email %> @ <%= status_summary.created_at.strftime("%m/%d/%Y at %l:%M%p") %></strong>
+      <strong><%= status_summary.user.email %> @ <%= status_summary.created_at.in_time_zone(status_report.team.timezone).strftime("%m/%d/%Y at %l:%M%p") %></strong>
       <%= simple_format(status_summary.body) %>
       <hr/>
     <% end %>
