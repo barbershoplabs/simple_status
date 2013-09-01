@@ -7,7 +7,7 @@ class Organization < ActiveRecord::Base
   has_many :teams, dependent: :destroy
   has_many :status_reports, dependent: :destroy
 
-  after_save :change_customer_status_on_stripe
+  after_save :change_on_stripe
 
   accepts_nested_attributes_for :users
 
@@ -33,7 +33,7 @@ class Organization < ActiveRecord::Base
     teams.count < Plan::CONSTRAINTS[plan.name.to_sym][:teams] ? true : false
   end
 
-  def change_customer_status_on_stripe
+  def change_on_stripe
     if status_changed?
       if inactive?
         customer = Stripe::Customer.retrieve(stripe_customer_id)
@@ -42,6 +42,11 @@ class Organization < ActiveRecord::Base
         customer = Stripe::Customer.retrieve(stripe_customer_id)
         customer.update_subscription(plan: "simple_status_plan_#{self.plan_id}")
       end
+    end
+
+    if plan_id_changed?
+      customer = Stripe::Customer.retrieve(stripe_customer_id)
+      customer.update_subscription(plan: "simple_status_plan_#{self.plan_id}")
     end
   end
 end

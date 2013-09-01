@@ -1,18 +1,35 @@
 <div class="span12">
 
-<h1>Managing <%= @organization.subdomain.humanize %></h1>
+  <h1>Account Management</h1>
+  <br/><br/>
+  <div class="row">
+    <div class="span8">
+      <h4>Account Settings <small><%= link_to 'edit', edit_admin_organization_path(@organization) %></small></h4>
+      <p>Domain: <%= @organization.subdomain %></p>
+      <p>Plan: <%= @organization.plan.name.humanize %> (<%= @organization.teams.count %> of <%= Plan::CONSTRAINTS[@organization.plan.name.to_sym][:teams] %> <%= pluralize_without_count("team", @organization.teams.count)%> created)</p>
+      <p>Owner: <%= @organization.owner.email %></p>
+      <hr/>
+      <h4>Billing</h4>
+      <p><%= link_to 'Change credit card', '#' %> <small>(coming soon)</small></p>
+      <p><%= link_to 'View billing history', '#' %> <small>(coming soon)</small></p>
 
-<p class="lead">Sorry, we're still finishing up this section. For now, you can only deactivate/reactive your account. If you'd like to make other changes to your account, please email <%= mail_to 'support@barbershoplabs.com' %>.</p>
+    </div>
+    <div class="span4">
+      <br/>
+      <%= simple_form_for [:admin, @organization], html: { class: "form-vertical" } do |f| %>
+        <% if @organization.active? %>
+          <%= f.hidden_field :status, value: Organization::STATUSES[:inactive] %>
+          <%= f.submit 'Deactivate Account', class: 'btn btn-danger' %>
+        <% elsif @organization.inactive? %>
+          <%= f.hidden_field :status, value: Organization::STATUSES[:active] %>
+          <%= f.submit 'Re-activate Account', class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+    </div>
 
-<%= simple_form_for [:admin, @organization], html: { class: "form-vertical" } do |f| %>
-  <% if @organization.active? %>
-    <%= f.hidden_field :status, value: Organization::STATUSES[:inactive] %>
-    <%= f.submit 'Deactivate Account', class: 'btn btn-danger' %>
-  <% elsif @organization.inactive? %>
-    <%= f.hidden_field :status, value: Organization::STATUSES[:active] %>
-    <%= f.submit 'Re-activate Account', class: 'btn btn-primary' %>
-  <% end %>
-<% end %>
+
+
+
 
 
 </div>

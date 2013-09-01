@@ -1,0 +1,7 @@
+<%= simple_form_for [:admin, @organization], html: { class: "form-vertical" } do |f| %>
+  <%= f.input :subdomain %>
+  <%= f.input :plan_id, as: :select, collection: Plan.active %>
+  <br/>
+
+  <%= f.submit 'Update Account', class: 'btn btn-primary' %>
+<% end %>
