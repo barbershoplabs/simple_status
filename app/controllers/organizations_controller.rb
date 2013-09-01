@@ -33,6 +33,7 @@ class OrganizationsController < ApplicationController
         end
 
         OrganizationMailer.welcome_email(@organization, membership.user).deliver
+        Gabba::Gabba.new("UA-15461246-7", "simplestatus.io").event("Organizations", "Create", "ID", "#{@organization.id}", true)
 
         format.html { redirect_to(admin_customer_root_url(subdomain: @organization.subdomain)) }
         format.json { render json: @organization, status: :created, location: @organization }

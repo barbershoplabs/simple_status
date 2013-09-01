@@ -22,6 +22,7 @@ gem 'devise_invitable', :github => 'scambra/devise_invitable'
 gem 'stripe'
 gem 'cancan'
 gem 'mailgun'
+gem 'gabba'
 
 group :doc do
   gem 'sdoc', require: false
