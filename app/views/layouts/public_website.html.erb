@@ -16,7 +16,10 @@
             <li><%= link_to "Features", "/#features" %></li>
             <li><%= link_to "Pricing", "/#pricing" %></li>
           </ul> <!-- /nav -->
+
+          <% if false %>
           <ul class="nav pull-right">
+
             <% if current_user %>
               <li><%= link_to "Signed in as: #{current_user.email}", "#" %></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
@@ -24,7 +27,7 @@
               <li><%= link_to 'Sign In', new_user_session_path %></li>
             <% end %>
          </ul>
-
+         <% end %>
         </div>
       </div>
     </div>
