@@ -5,7 +5,7 @@ class Plan < ActiveRecord::Base
   after_destroy :destroy_on_stripe
 
   STATUSES = { inactive: 0, active: 1 }
-  CONSTRAINTS = { basic: { teams: 1 }, premium: { teams: 5 }, enterprise: { teams: 100000 } }
+  CONSTRAINTS = { basic: { teams: 1 }, premium: { teams: 5 }, enterprise: { teams: 1000 } }
 
   STATUSES.keys.each do |status|
     scope status, -> { where("status = ?", STATUSES[status]) }

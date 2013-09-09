@@ -3,17 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #top-header {
-  height: 440px;
 
   .message {
+    width: 400px;
     padding-top: 115px;
   }
 
   h1 {
-    padding-top: 20px;
-    font-size: 35px;
-    text-transform: uppercase;
+    padding-top: 0px;
+    font-size: 36px;
   }
+  h2 {
+    font-size: 18px;
+    color: #878e98;
+    padding-bottom: 30px;
+  }
+
 }
 
 

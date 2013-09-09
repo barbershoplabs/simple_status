@@ -3,7 +3,7 @@ class Admin::StatusReportsController < ApplicationController
   authorize_resource
 
   def index
-    @status_reports = @current_organization.status_reports
+    @status_reports = @current_organization.status_reports.order("created_at DESC")
   end
 
   def show

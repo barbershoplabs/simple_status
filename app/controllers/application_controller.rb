@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
 
   def set_layout
-    if controller_path.starts_with?("admin/") || controller_path.starts_with?("htadmin/")
+    if controller_path.starts_with?("admin/") || controller_path.starts_with?("sadmin/")
       "application"
   	elsif @current_organization.present?
   		"customer"

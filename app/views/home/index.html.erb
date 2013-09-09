@@ -2,13 +2,14 @@
   <div class="container">
     <div class="row">
       <div id="top-header">
-        <div class="span6">
+        <div class="span7">
           <div class="message">
-            <h1>Status reports suck.</h1>
-            <h1>We make them suck less.</h1>
+            <h1>Team status reports</h1>
+            <h2>Simple Status makes requesting, sharing, and tracking status reports simple.</h2>
+            <%= link_to 'Get started with Simple Status', new_organization_path(plan: 1), class: 'btn btn-small btn-info' %>
           </div>
         </div>
-        <div class="span6 screenshot">
+        <div class="span5 screenshot">
           <%= image_tag "screenshot.png" %>
         </div>
       </div>
@@ -21,33 +22,20 @@
     <div id="tiles" class="span12" style="text-align: center">
       <div class="row demo-tiles">
 
-        <div class="span4">
-          <div style="height: 200px">
-            <%= image_tag 'icons/Settings@2x.png' %>
-          </div>
+        <div class="span4" style="text-align: left;">
           <h3>Simple Setup</h3>
-          <p>You create status report groups, decide when the requests should go out and when the digests are sent.</p>
-          <p>That's it, we'll handle the rest.</p>
+          <p>You create status report groups with unlimited users, decide when the requests should go out and how many days later the digests should be sent. That's it, we'll handle the rest.</p>
         </div>
 
 
-        <div class="span4">
-          <div style="height: 200px">
-            <%= image_tag 'icons/Spaceship@2x.png' %>
-         </div>
+        <div class="span4" style="text-align: left;">
          <h3>Quick and Painless</h3>
-         <p>Status reports shouldn't require filling out long forms, or long team meetings.</p>
-         <p>Simple Status sends your team an email. They reply with their status. Done!</p>
+         <p>Status reports shouldn't require filling out long forms, or long team meetings. Simple Status sends your team an email. They reply with their status. Done!</p>
         </div>
 
-        <div class="span4">
-          <div style="height: 200px">
-            <%= image_tag 'icons/Bulb@2x.png' %>
-          </div>
-
+        <div class="span4" style="text-align: left;">
           <h3>Full Visibility</h3>
-          <p>We automatically send the team a digest with everyone's updates.</p>
-          <p>Everyone has access to a web-based report to track progress over time.</p>
+          <p>We automatically send the team a digest with everyone's updates. Your entire team has access to a web-based report to track progress over time.</p>
         </div>
 
       </div>
@@ -64,6 +52,7 @@
             <li class="plan-name">Basic</li>
             <li class="plan-price">$10/mo</li>
             <li>Create a single status report team</li>
+            <li>Unlimited users per team</li>
             <li>Unlimited status reports</li>
             <li>Email-based Support</li>
             <li>30-day free trial. Cancel anytime.</li>
@@ -78,7 +67,8 @@
           <ul class="plan shadow-lifted  bootstrap-orange featured hover-animate-position" data-reset="plan shadow-lifted  bootstrap-orange featured hover-animate-position">
             <li class="plan-name">Premium</li>
             <li class="plan-price">$50/mo</li>
-            <li>Create up to five status report teams</li>
+            <li>Create up to 5 status report teams</li>
+            <li>Unlimited users per team</li>
             <li>Unlimited status reports</li>
             <li>Email-based Support</li>
             <li>30-day free trial. Cancel anytime.</li>
@@ -92,7 +82,8 @@
           <ul class="plan shadow-lifted  bootstrap-green hover-animate-position" data-reset="plan shadow-lifted  bootstrap-green hover-animate-position">
             <li class="plan-name">Enterprise</li>
             <li class="plan-price">$250/mo</li>
-            <li>Create unlimited status report teams</li>
+            <li>Create up to 1,000 status report teams</li>
+            <li>Unlimited users per team</li>
             <li>Unlimited status reports</li>
             <li>Premium 24hrs support</li>
             <li>30-day free trial. Cancel anytime.</li>

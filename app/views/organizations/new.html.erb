@@ -1,12 +1,12 @@
-<div class="span12">
-	<h3>You're 60 seconds away from a Simple Status account</h3>
-
+<h3>You're 60 seconds away from a Simple Status account</h3>
+<br/>
+<div class="span7">
 	<div class="payment-errors alert alert-error"></div>
-
 	<%= simple_form_for @organization, html: { class: "form-vertical" } do |f| %>
 		<%= f.hidden_field :plan_id, value: @plan.id %>
+
 		<legend>Site details</legend>
-		<%= f.input :subdomain, label: "Subdomain", hint: "http://___.simplestatus.io" %>
+		<%= f.input :subdomain, label: "Subdomain", hint: "http://companyname.simplestatus.io" %>
 
 		<% unless current_user %>
 			<legend>Personal details</legend>
@@ -41,6 +41,17 @@
 
 		<%= f.submit nil, class: 'btn btn-primary' %>
 	<% end %>
+</div>
+<div class="span5">
+<div class="alert">
+  <p>You chose the <strong><%= @plan.name.humanize %></strong> plan.</p>
+  <p>This provides you <strong><%= Plan::CONSTRAINTS[@plan.name.to_sym][:teams] %> <%= pluralize_without_count("team", Plan::CONSTRAINTS[@plan.name.to_sym][:teams]) %></strong>
+  with <strong>unlimited users</strong> for <strong><%= display_price(@plan) %>/<%= @plan.interval %></strong>.</p>
+  <p>You will receive <strong>30-days free</strong> and can cancel at any time.</p>
+  <br/>
+  <%= image_tag 'stripe.png' %>
+</div>
+
 </div>
 
 <script>
