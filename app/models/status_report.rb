@@ -46,7 +46,7 @@ class StatusReport < ActiveRecord::Base
   end
 
   def self.send_status_report_digests
-    StatusReport.joins(:organization).where("organizations.status = ? and sent_digest_at is null", Organization::STATUSES[:active]).each do |status_report|
+    StatusReport.joins(:organization).where("organizations.status = ? and sent_digest_at is null", Organization::STATUSES[:active]).readonly(false).each do |status_report|
       puts "STATUS REPORT IS: #{status_report.inspect}"
 
       team = status_report.team
