@@ -47,23 +47,15 @@ class StatusReport < ActiveRecord::Base
 
   def self.send_status_report_digests
     StatusReport.joins(:organization).where("organizations.status = ? and sent_digest_at is null", Organization::STATUSES[:active]).readonly(false).each do |status_report|
-      puts "STATUS REPORT IS: #{status_report.inspect}"
-
       team = status_report.team
-      puts "TEAM IS: #{team.inspect}"
 
       time_now = Time.now.in_time_zone(team.timezone)
-      puts "TIME NOW: #{time_now}"
-
       created_at = status_report.created_at.in_time_zone(team.timezone)
       send_at_date = created_at.beginning_of_day + team.send_digest_days_later.days
       send_at_date_time = send_at_date.change(hour: team.send_digest_at.hour, minute: team.send_digest_at.min)
 
-      puts "SEND_AT_DATE_TIME #{send_at_date_time}"
-
       if time_now > send_at_date_time
-        puts "GOOD TO SEND..."
-        # TeamMailer.status_report_digest_email(status_report).deliver
+        TeamMailer.status_report_digest_email(status_report).deliver
 
         status_report.sent_digest_at = Time.now
         status_report.save!
