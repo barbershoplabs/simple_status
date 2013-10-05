@@ -7,11 +7,11 @@ class StatusReport < ActiveRecord::Base
   before_create do
     generate_token(:token)
   end
-  after_create :send_status_report_email
+  after_create :send_status_report_request_email
 
 
-  def send_status_report_email
-    TeamMailer.status_report_email(self.team, self.organization, self.token).deliver
+  def send_status_report_request_email
+    TeamMailer.status_report_request_email(self.team, self.organization, self.token).deliver
   end
 
   def generate_token(column)
@@ -20,7 +20,7 @@ class StatusReport < ActiveRecord::Base
     end while StatusReport.exists?(column => self[column])
   end
 
-  def self.send_status_reports
+  def self.send_status_report_requests
     Team.joins(:organization).where("organizations.status = ?", Organization::STATUSES[:active]).each do |team|
 
       time_now = Time.now.in_time_zone(team.timezone)
@@ -41,6 +41,27 @@ class StatusReport < ActiveRecord::Base
             StatusReport.create(team_id: team.id, organization_id: team.organization.id)
           end
         end
+      end
+    end
+  end
+
+  def self.send_status_report_requests_reminder
+    StatusReport.joins(:organization).where("organizations.status = ? and sent_digest_at is null and sent_reminder_at is null", Organization::STATUSES[:active]).readonly(false).each do |status_report|
+      puts "IN REMINDER..."
+      team = status_report.team
+
+      time_now = Time.now.in_time_zone(team.timezone)
+      created_at = status_report.created_at.in_time_zone(team.timezone)
+
+
+      send_at_date = created_at.beginning_of_day + 1.day
+      send_at_date_time = send_at_date.change(hour: team.send_digest_at.hour, minute: team.send_digest_at.min)
+
+      if time_now > send_at_date_time
+        TeamMailer.status_report_request_reminder_email(status_report).deliver
+
+        status_report.sent_reminder_at = Time.now
+        status_report.save!
       end
     end
   end

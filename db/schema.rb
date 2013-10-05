@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130831192122) do
+ActiveRecord::Schema.define(version: 20131005035819) do
 
   create_table "memberships", force: true do |t|
     t.integer  "user_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20130831192122) do
     t.datetime "updated_at"
     t.string   "token"
     t.datetime "sent_digest_at"
+    t.datetime "sent_reminder_at"
   end
 
   create_table "status_summaries", force: true do |t|
