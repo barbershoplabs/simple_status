@@ -17,8 +17,6 @@ class TeamMailer < ActionMailer::Base
     @status_summaries = @status_report.status_summaries
     @no_response_from = @team.users.pluck(:email) - @status_report.users.pluck(:email)
 
-    puts "NO RESPONSE FROM: #{@no_response_from}"
-
     mail(from: @team.email, to: 'no-reply@simplestatus.io', bcc: @no_response_from, subject: "[#{@team.name.titleize}] status report request (reminder)")
   end
 

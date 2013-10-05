@@ -47,7 +47,6 @@ class StatusReport < ActiveRecord::Base
 
   def self.send_status_report_requests_reminder
     StatusReport.joins(:organization).where("organizations.status = ? and sent_digest_at is null and sent_reminder_at is null", Organization::STATUSES[:active]).readonly(false).each do |status_report|
-      puts "IN REMINDER..."
       team = status_report.team
 
       time_now = Time.now.in_time_zone(team.timezone)
