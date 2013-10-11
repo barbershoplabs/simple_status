@@ -4,7 +4,7 @@ class StatusReportsController < ApplicationController
   before_filter :check_organization_status
 
   def index
-    @status_reports = current_user.status_reports.order("created_at DESC")
+    @status_reports = @current_organization.status_reports.order("created_at DESC")
   end
 
   def show

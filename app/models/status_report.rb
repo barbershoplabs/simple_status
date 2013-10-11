@@ -36,7 +36,9 @@ class StatusReport < ActiveRecord::Base
         if now_tod >= send_at_tod && now_tod <= expire_tod
           # check to se if a report has already been created for today for this team
           status_report = StatusReport.where(team_id: team.id, created_at: time_now.beginning_of_day..time_now.end_of_day)
+          puts "FOUND A STATUS REPORT FOR THIS WEEK: #{status_report.inspect}"
           if status_report.empty?
+            puts "CREATING A STATUS REPORT FOR THIS WEEK FOR TEAM: #{team.inspect}"
             # none yet, create one
             StatusReport.create(team_id: team.id, organization_id: team.organization.id)
           end
