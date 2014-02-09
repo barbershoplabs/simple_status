@@ -39,7 +39,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'debugger'
   gem 'capybara'
 	gem 'selenium-webdriver'
   gem 'database_cleaner'

@@ -62,14 +62,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    columnize (0.3.6)
     database_cleaner (1.1.1)
-    debugger (1.6.1)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.3)
-    debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.3)
     devise (3.0.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -216,7 +209,6 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.0.0)
   database_cleaner
-  debugger
   devise
   devise_invitable!
   factory_girl_rails (~> 4.0)
